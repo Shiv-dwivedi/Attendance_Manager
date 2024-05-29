@@ -10,8 +10,6 @@
     android:gravity="center"
     tools:context=".SignupActivity">
 
-fhfhfgh
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +42,9 @@ fhfhfgh
                 android:hint="Email"
                 android:drawableLeft="@drawable/person"
                 android:drawablePadding="8dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:singleLine="true"
+                android:imeOptions="actionNext"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,7 +55,9 @@ fhfhfgh
                 android:hint="Password"
                 android:drawableLeft="@drawable/lock_svgrepo_com"
                 android:drawablePadding="8dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:singleLine="true"
+                android:imeOptions="actionDone"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,7 +83,7 @@ fhfhfgh
                 android:layout_height="wrap_content"
                 android:text="Sign in with Google"
                 android:id="@+id/googleBtn"
-                app:isDarkTheme = "true"
+                app:isDarkTheme="true"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="40dp"
@@ -98,9 +100,6 @@ fhfhfgh
                 android:layout_marginTop="20dp"
                 android:textColor="@color/lavender"/>
 
-
-
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 </LinearLayout>

@@ -34,39 +34,30 @@ public class SignupActivity extends AppCompatActivity {
         SignupButton = findViewById(R.id.signup_button);
         LoginRedirectText = findViewById(R.id.loginRedirectText);
 
-        SignupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String user = signupEmail.getText().toString().trim();
-                String pass = signupPassword.getText().toString().trim();
+        SignupButton.setOnClickListener(view -> {
+            String user = signupEmail.getText().toString().trim();
+            String pass = signupPassword.getText().toString().trim();
 
-                if (user.isEmpty()) {
-                    signupEmail.setError("Email can't be empty");
-                    return;
-                }
-                if (pass.isEmpty()) {
-                    signupPassword.setError("Password can't be empty");
-                    return;
-                }
-
-                auth.createUserWithEmailAndPassword(user, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(SignupActivity.this, "SignUp Successful", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(SignupActivity.this, "SignUp Failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+            if (user.isEmpty()) {
+                signupEmail.setError("Email can't be empty");
+                return;
             }
+            if (pass.isEmpty()) {
+                signupPassword.setError("Password can't be empty");
+                return;
+            }
+
+            auth.createUserWithEmailAndPassword(user, pass).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(SignupActivity.this, "SignUp Successful", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                    finish(); // Finish this activity to prevent going back to it after signing up
+                } else {
+                    Toast.makeText(SignupActivity.this, "SignUp Failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         });
 
-        LoginRedirectText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
-            }
-        });
+        LoginRedirectText.setOnClickListener(view -> startActivity(new Intent(SignupActivity.this, LoginActivity.class)));
     }
 }
